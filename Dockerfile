@@ -1,5 +1,4 @@
 FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
 EXPOSE 8082
-ENTRYPOINT ["java","-jar","/app.jar"]
+ADD target/timesheet-devops-10.jar timesheet-devops-10.jar
+ENTRYPOINT ["java","-jar","/timesheet-devops-10.jar"]
