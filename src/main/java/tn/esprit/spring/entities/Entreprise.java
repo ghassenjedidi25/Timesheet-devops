@@ -36,7 +36,6 @@ public class Entreprise implements Serializable {
 		this.name = name;
 		this.raisonSocial = raisonSocial;
 	}
-
 	public String getName() {
 		return name;
 	}
@@ -68,5 +67,4 @@ public class Entreprise implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 }
