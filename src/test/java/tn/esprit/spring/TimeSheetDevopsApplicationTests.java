@@ -11,8 +11,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import tn.esprit.spring.entities.Employe;
-import tn.esprit.spring.services.EmployeServiceImpl;
+import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.services.EntrepriseServiceImpl;
 
 @SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
@@ -20,41 +20,41 @@ public class TimeSheetDevopsApplicationTests {
 
 
 	@Autowired
-	EmployeServiceImpl es;
+	EntrepriseServiceImpl es;
 
 	@Test
 	@Order(1)
-	public void testRetrieveAllEmployees() {
-		List<Employe> listEmployees = es.retrieveAllEmployees();
-		Assertions.assertEquals(0, listEmployees.size());
+	public void testRetrieveAllEntreprises() {
+		List<Entreprise> listEntreprises = es.retrieveAllEntreprises();
+		Assertions.assertEquals(0, listEntreprises.size());
 	}
 	@Test
 	@Order(2)
-	public void testAddEmployee() throws ParseException{
-		Employe e = new Employe("ghassen","jedidi", "jedidighassen@gmail.com", false, null);
-		Employe addedEmploye = es.addEmploye(e);
-		Assertions.assertEquals(e.getNom(),addedEmploye.getNom());
+	public void testAddEntreprisee() throws ParseException{
+		Entreprise e = new Entreprise("entreprise1", "raisonSocialEntreprise1");
+		Entreprise addedEntreprise = es.addEntreprise(e);
+		Assertions.assertEquals(e.getName(),addedEntreprise.getName());
 	}
 	
 	@Test
 	@Order(3)
-	public void testUpdateEmployee() throws ParseException{
-		Employe e = new Employe("test","jedidi", "jedidighassen@gmail.com", false, null);
-		Employe updatedEmploye = es.updateEmploye(e);
-		Assertions.assertEquals(e.getNom(),updatedEmploye.getNom());
+	public void testUpdateEntreprisee() throws ParseException{
+		Entreprise e = new Entreprise("entreprise1.1", "raisonSocialEntreprise1");
+		Entreprise updatedEntreprise = es.updateEntreprise(e);
+		Assertions.assertEquals(e.getName(),updatedEntreprise.getName());
 	}
 	
 	@Test
 	@Order(4)
-	public void testRetriveEmployee() throws ParseException{
-		Employe userRetrived = es.retrieveEmploye("1");
+	public void testRetriveEntreprisee() throws ParseException{
+		Entreprise userRetrived = es.retrieveEntreprise("1");
 		Assertions.assertEquals(1L,userRetrived.getId());
 	}
 	
 	@Test
 	@Order(5)
-	public void testDeleteEmployee() throws ParseException{
-		es.deleteEmploye("1");
-		Assertions.assertNull(es.retrieveEmploye("1"));
+	public void testDeleteEntreprisee() throws ParseException{
+		es.deleteEntreprise("1");
+		Assertions.assertNull(es.retrieveEntreprise("1"));
 	}
 }
