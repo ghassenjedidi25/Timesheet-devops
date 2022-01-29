@@ -1,0 +1,47 @@
+version: "3.3"
+
+services:
+  db:
+    image: mysql:latest
+    container_name: mysqldb-1
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=timesheet-devops-db
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: php-myadmin
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+
+  backend:
+    image: docker.io/ghaith4/timesheet-devops:10
+    container_name: timesheet-devops
+    ports:
+      - "8082:8082"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: mysqldb:3306/timesheet-devops-db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
+  sonar:
+    image: sonarqube:6.7.7-community
+    container_name: sonarqube-1
+    ports:
+      - "9001:9000"
+
+  nexus:
+    image: sonatype/nexus3:latest
+    container_name: nexus-1
+    ports:
+      - "8081:8081"
+
+  jenkins:
+    image: jenkins:2.32.2
+    container_name: jenkins-1
+    ports:
+      - "8080:8080"
