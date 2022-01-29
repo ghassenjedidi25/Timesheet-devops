@@ -38,7 +38,7 @@ public class EmployeRestController {
 		}
 
 		
-		@DeleteMapping("/remove-employe/{user-id}") 
+		@DeleteMapping("/remove-employe/{employe-id}") 
 		public void removeUser(@PathVariable("employe-id") String employeId) { 
 			es.deleteEmploye(employeId);
 		} 

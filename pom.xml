@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>tn.esprit.spring</groupId>
 	<artifactId>timesheet-devops</artifactId>
-	<version>4</version>
+	<version>5</version>
 	<name>timesheet-devops</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
